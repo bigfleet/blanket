@@ -3,4 +3,5 @@ host: foobar.com
 user: foo
 password: topsecret
 directory: /usr/local/confluence
+bucket: com.foobar.confluence
 

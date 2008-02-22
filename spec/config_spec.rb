@@ -2,6 +2,22 @@ require 'yaml'
 
 describe "The YAML config file" do
   
+  describe "for S3" do
+    before do
+      file = File.dirname(__FILE__) + "/fixtures/s3-info.yml"
+      @results = YAML.load_file(file)
+    end
+    
+    it "should define the access key id" do
+      @results["ACCESS_KEY_ID"].should == "some_key"
+    end
+    
+    it "should define the secret key id" do
+      @results["SECRET_ACCESS_KEY"].should == "some_secret"
+    end
+    
+  end
+  
   describe "for Confluence" do
     before do
       file = File.dirname(__FILE__) + "/fixtures/confluence.yml"
@@ -32,6 +48,10 @@ describe "The YAML config file" do
     
     it "should define the backup directory" do
       @results["directory"].should == "/usr/local/confluence"
+    end
+    
+    it "should define the bucket name" do
+      @results["bucket"].should == "com.foobar.confluence"
     end
     
   end
