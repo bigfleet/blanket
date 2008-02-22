@@ -1,0 +1,6 @@
+type: Confluence
+host: foobar.com
+user: foo
+password: topsecret
+directory: /usr/local/confluence
+
