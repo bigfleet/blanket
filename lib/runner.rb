@@ -13,9 +13,9 @@ class Runner
     end
   end
 
-  def connect(host, username = nil, password = nil)
+  def connect(command, host, username = nil, password = nil)
     Net::SSH.start( host, username, password ) do |session|
-      do_command session, "ls ~"
+      do_command session, "#{command}"
       session.loop
     end
   end
