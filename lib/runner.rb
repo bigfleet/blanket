@@ -13,8 +13,8 @@ class Runner
     end
   end
 
-  def go
-    Net::SSH.start( 'jimvanfleet.is-a-geek.com', 'bigfleet', '2021nd' ) do |session|
+  def connect(host, username = nil, password = nil)
+    Net::SSH.start( host, username, password ) do |session|
       do_command session, "ls ~"
       session.loop
     end

@@ -7,7 +7,7 @@ describe "The SSH connection" do
   end
   
   it "should be able to make a simple connection to a known host" do
-    @runner.go
+    @runner.connect('jimvanfleet.is-a-geek.com')
     @runner.buffer.should_not be_nil
     @runner.buffer.should_not be_empty
   end
