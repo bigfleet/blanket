@@ -1,4 +1,4 @@
-require 'yaml'
+load File.dirname(__FILE__) + "/spec_helper.rb"
 
 describe "The YAML config file" do
   
@@ -47,7 +47,7 @@ describe "The YAML config file" do
     end
     
     it "should define the backup directory" do
-      @results["directory"].should == "/usr/local/confluence"
+      @results["directory"].should == "/var/confluence/backups"
     end
     
     it "should define the bucket name" do

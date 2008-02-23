@@ -2,6 +2,6 @@ type: Confluence
 host: foobar.com
 user: foo
 password: topsecret
-directory: /usr/local/confluence
+directory: /var/confluence/backups
 bucket: com.foobar.confluence
 
