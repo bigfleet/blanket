@@ -1,7 +1,7 @@
-blanket_type: Confluence
-host: foobar.com
+--- 
 user: foo
-password: topsecret
+blanket_type: Confluence
 directory: /var/confluence/backups
 bucket: com.foobar.confluence
-
+host: foobar.com
+password: topsecret

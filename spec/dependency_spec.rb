@@ -10,10 +10,10 @@ describe "To run the app" do
     }.should_not raise_error
   end
   
-  it "you should have the net-ssh gem installed" do
+  it "you should have the capistrano gem installed" do
     lambda{
       require 'rubygems'
-      gem 'net-ssh'
+      gem 'capistrano'
     }.should_not raise_error
   end
   
