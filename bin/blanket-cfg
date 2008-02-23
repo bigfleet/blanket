@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+require 'optparse'
+
+# default options
+OPTIONS = {
+  :task     => "taskname",
+  :source   => "sourcename",
+  :sink     => "sinkname"
+}
+
+
+ARGV.options do |o|
+  script_name = File.basename($0)
+  
+  o.set_summary_indent('  ')
+  o.banner =    "Usage: #{script_name} [OPTIONS]"
+  o.define_head "Configure blanket task with source and sink information"
+  o.separator   ""
+  
+  o.on("-t", "--task=val", String,
+       "name of the task") { |OPTIONS[:task]| }
+  o.on("-o", "--source=val", String,
+       "blanket type of the source") { |OPTIONS[:source]| }
+  o.on("-i", "--sink=val",  String,
+       "blanket type of the sink") { |OPTIONS[:sink]| }
+  
+  o.separator ""
+
+  o.on_tail("-h", "--help", "Show this help message.") { puts o; exit }
+  
+  o.parse!
+end
+
+puts "task  :   #{OPTIONS[:task]}"
+puts "source:   #{OPTIONS[:source]}"
+puts "sink  :   #{OPTIONS[:sink]}"
+puts "arguments: #{ARGV}"
