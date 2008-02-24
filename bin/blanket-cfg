@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 require 'optparse'
+require 'fileutils'
+
+load File.dirname(__FILE__) + "/../lib/init.rb"
 
 # default options
 OPTIONS = {
-  :task     => "taskname",
-  :source   => "sourcename",
-  :sink     => "sinkname"
 }
 
 
@@ -31,7 +31,20 @@ ARGV.options do |o|
   o.parse!
 end
 
-puts "task  :   #{OPTIONS[:task]}"
-puts "source:   #{OPTIONS[:source]}"
-puts "sink  :   #{OPTIONS[:sink]}"
-puts "arguments: #{ARGV}"
+BAD_ARGS = "You failed to supply all the required arguments.  Please use -h and try again.\n"
+$stderr <<  BAD_ARGS unless OPTIONS[:task] && OPTIONS[:source] && OPTIONS[:sink]
+
+task = OPTIONS[:task]
+source_class = OPTIONS[:source]
+
+task_dir = FileUtils.pwd + "/" +task
+puts "Creating #{task_dir}"
+FileUtils.mkdir_p task_dir
+source_file = task_dir + "/source.yml"
+source_atts = Object.const_get(source_class).default_attributes
+source_writer = Writer.new(source_atts)
+puts "Writing source configuration #{source_file}"
+source_writer.write(source_file)
+
+
+
