@@ -36,15 +36,17 @@ $stderr <<  BAD_ARGS unless OPTIONS[:task] && OPTIONS[:source] && OPTIONS[:sink]
 
 task = OPTIONS[:task]
 source_class = OPTIONS[:source]
+@task_dir = FileUtils.pwd + "/" +task
+puts "Creating #{@task_dir}"
+FileUtils.mkdir_p @task_dir
 
-task_dir = FileUtils.pwd + "/" +task
-puts "Creating #{task_dir}"
-FileUtils.mkdir_p task_dir
-source_file = task_dir + "/source.yml"
-source_atts = Object.const_get(source_class).default_attributes
-source_writer = Writer.new(source_atts)
-puts "Writing source configuration #{source_file}"
-source_writer.write(source_file)
+def write_config_for(sym)
+  file = @task_dir + "/#{sym.to_s}.yml"
+  atts = Object.const_get(OPTIONS[sym]).default_attributes
+  writer = Writer.new(atts)
+  puts "Writing #{sym} configuration #{file}"
+  writer.write(file)
+end
 
-
-
+write_config_for(:source)
+write_config_for(:sink)
