@@ -11,5 +11,10 @@ class Reader
      nil
   end
   
+  def keys
+    btype = @attributes["blanket_type"]
+    Object.const_get(btype).attribute_symbols
+  end
+  
   
 end

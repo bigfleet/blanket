@@ -1,0 +1,3 @@
+# eventually the blanket gem will get included here, but for now
+# it's this
+load 'home'

@@ -1,7 +1,8 @@
 require 'rubygems'
 require 'yaml'
-require 'net/ssh'
 gem 'aws-s3'
+gem 'capistrano'
+
 
 # God, this is laborious.  I need to know how to do this better.
 

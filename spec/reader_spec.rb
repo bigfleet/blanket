@@ -20,6 +20,11 @@ describe "The YAML config file" do
       @reader.secret_access_key.should == "some_secret"
     end
     
+    it "should report the S3 keys as its own" do
+      @reader.keys.should == S3.attribute_symbols
+    end
+    
+    
   end
   
   describe "for Confluence" do
@@ -50,6 +55,10 @@ describe "The YAML config file" do
     
     it "should define the bucket name" do
       @reader.bucket.should == "com.foobar.confluence"
+    end
+    
+    it "should report the Confluence keys as its own" do
+      @reader.keys.should == Confluence.attribute_symbols
     end
     
   end

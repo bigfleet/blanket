@@ -1,0 +1,7 @@
+--- 
+user: username
+blanket_type: Confluence
+directory: /path/to/confluence/backups
+bucket: s3-bucket
+host: yourhost.com
+password: password
