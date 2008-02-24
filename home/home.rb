@@ -13,7 +13,7 @@ namespace :source do
   
   desc "Prepare a backup for download"
   task :prep, :hosts => lambda{host} do
-    puts "#{blanket_type}"
+    run "ls"
   end
   
   desc "Download the prepped backup"

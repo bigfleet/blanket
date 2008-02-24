@@ -1,7 +1,6 @@
 --- 
-user: username
+user: bigfleet
 blanket_type: Confluence
-directory: /path/to/confluence/backups
-bucket: s3-bucket
-host: yourhost.com
-password: password
+directory: /var/confluence/backups
+bucket: com.jimvanfleet.confluence
+host: jimvanfleet.is-a-geek.com
