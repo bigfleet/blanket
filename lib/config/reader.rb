@@ -12,9 +12,19 @@ class Reader
   end
   
   def keys
-    btype = @attributes["blanket_type"]
-    Object.const_get(btype).attribute_symbols
+    blanket_type.attribute_symbols
   end
   
+  def self.blanketize(path)
+    reader = Reader.new(path)
+    blanket_type.new(@attributes)
+  end
+  
+  private
+  
+  def blanket_type
+    btype = @attributes["blanket_type"]
+    Object.const_get(btype)
+  end
   
 end

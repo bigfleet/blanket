@@ -1,3 +1,4 @@
+require 'date'
 class Confluence < Source
   
   def self.attribute_symbols
@@ -26,6 +27,12 @@ class Confluence < Source
   
   def self.default_bucket
     "s3-bucket"
+  end
+  
+  def self.backup_file
+    #On my system, they're named daily-backup-2008_02_24.zip
+    today = Date.today
+    "daily-backup-#{today.strftime("%Y_%m_%d")}.zip"
   end
   
 end
