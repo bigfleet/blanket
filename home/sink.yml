@@ -2,3 +2,4 @@
 blanket_type: S3
 access_key_id: your-id
 secret_access_key: your-secret-ket
+bucket: com.jimvanfleet.confluence

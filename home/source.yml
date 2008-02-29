@@ -2,5 +2,4 @@
 user: bigfleet
 blanket_type: Confluence
 directory: /var/confluence/backups
-bucket: com.jimvanfleet.confluence
 host: jimvanfleet.is-a-geek.com

@@ -2,7 +2,7 @@ require 'rubygems'
 require 'yaml'
 gem 'aws-s3'
 gem 'capistrano'
-
+require 'aws/s3'
 
 # God, this is laborious.  I need to know how to do this better.
 

@@ -2,10 +2,10 @@ require 'date'
 class Confluence < Source
   
   def self.attribute_symbols
-    [:blanket_type, :host, :user, :password, :directory, :bucket]
+    [:source_type, :host, :user, :password, :directory ]
   end
   
-  def self.default_blanket_type
+  def self.default_source_type
     "Confluence"
   end
   
@@ -23,10 +23,6 @@ class Confluence < Source
   
   def self.default_directory
     "/path/to/confluence/backups"
-  end
-  
-  def self.default_bucket
-    "s3-bucket"
   end
   
   def self.backup_file
