@@ -21,7 +21,7 @@ namespace :source do
   task :download do
     cmd = "scp #{host}:#{directory}/#{Confluence.backup_file} ."
     puts "Executing #{cmd}"
-    #exec(cmd)
+    system(cmd)
   end
   
   desc "Clean up, remotely"
@@ -32,7 +32,6 @@ namespace :source do
 end
 before "source:prep", "source:load_config"
 before "source:download", "source:load_config"
-after "source:prep", "source:download"
 after "source:download", "source:cleanup"
 
 namespace :sink do
@@ -57,5 +56,5 @@ namespace :sink do
   end
   
 end
-before "sink:load_config", "source:download"
+before "sink:export", "source:download"
 before "sink:export", "sink:load_config"

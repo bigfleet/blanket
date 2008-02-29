@@ -62,7 +62,6 @@ class S3 < Sink
       log("Uploading #{backup_file} to S3", :info)
       S3Object.store(backup_file.to_s, File.open(backup_file), bucket)
     end
-    
   end
   
 end
