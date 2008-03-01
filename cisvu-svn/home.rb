@@ -14,7 +14,7 @@ namespace :source do
   
   desc "Prepare a backup for download"
   task :prep, :hosts => lambda{ host } do
-    run "mysqldump #{dump_options} --password=#{password} -u #{db_user}  #{database} > #{backup_file}"
+    run "svnadmin dump #{repository} > #{backup_file}"
   end
   
   desc "Download the prepped backup"
