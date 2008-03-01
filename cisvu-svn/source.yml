@@ -1,0 +1,8 @@
+--- 
+user: username
+repository: /path/to/repo
+filename: repo.svn.dump
+backup_file: ~/repo.svn.dump
+host: yourhost.com
+source_type: Subversion
+password: password
