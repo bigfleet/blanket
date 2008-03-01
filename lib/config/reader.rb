@@ -23,7 +23,7 @@ class Reader
   private
   
   def blanket_type
-    btype = @attributes["blanket_type"]
+    btype = @attributes["source_type"] || @attributes["sink_type"]
     Object.const_get(btype)
   end
   
