@@ -12,14 +12,14 @@ describe "The Blanket config writer" do
   it "should write a config file that the reader can read" do
     @writer.write(@tempfile)
     reader = Reader.new(@tempfile)
-    Reader.new(@tempfile).blanket_type.should == "Confluence"
+    Reader.new(@tempfile).source_type.should == "Confluence"
   end
   
   it "should write a config file that matches the incoming parameters" do
     @writer.write(@tempfile)
     @reader = Reader.new(@confluence_file)
     @write_reader = Reader.new(@tempfile)
-    [:blanket_type, :host, :user, :password, :directory, :bucket].each do |sym|
+    [:sink_type, :host, :user, :password, :directory, :bucket].each do |sym|
       @write_reader.send(sym).should == @reader.send(sym)
     end
   end

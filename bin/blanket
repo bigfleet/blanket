@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
-
 load File.dirname(__FILE__) + "/../lib/init.rb"
+require 'capistrano/cli'
+dir = ARGV.shift
+ARGV << "sink:export"
+FileUtils.cd(dir)
+Capistrano::CLI.execute
 
-puts $ARGV

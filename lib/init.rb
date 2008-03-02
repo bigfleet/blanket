@@ -1,9 +1,14 @@
 require 'rubygems'
 require 'yaml'
 gem 'aws-s3'
+gem 'rake'
 gem 'capistrano'
+require 'rake'
+require 'capistrano'
+require 'capistrano/configuration'
 require 'aws/s3'
 require 'fileutils'
+require 'pathname'
 
 # God, this is laborious.  I need to know how to do this better.
 

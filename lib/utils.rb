@@ -1,4 +1,16 @@
 module Utils
+  
+  def method_missing(symbol)
+    @reader.send(symbol)
+   rescue
+     nil
+  end
+  
+  # remote noop command
+  def noop
+    "echo"
+  end
+  
   module ClassMethods; end
   def self.included(klass)
     klass.extend(ClassMethods)

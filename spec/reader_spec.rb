@@ -12,6 +12,11 @@ describe "The YAML config file" do
       @reader.should_not be_nil
     end
     
+    it "should define the sink type as S3" do
+      @reader.sink_type.should == "S3"
+    end
+    
+    
     it "should define the access key id" do
       @reader.access_key_id.should == "some_key"
     end
@@ -34,7 +39,7 @@ describe "The YAML config file" do
     end
     
     it "should define the blanket type as Confluence" do
-      @reader.blanket_type.should == "Confluence"
+      @reader.source_type.should == "Confluence"
     end
     
     it "should define the host" do
