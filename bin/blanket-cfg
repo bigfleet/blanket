@@ -50,3 +50,32 @@ end
 
 write_config_for(:source)
 write_config_for(:sink)
+
+
+def unindent(string)
+  indentation = string[/\A\s*/]
+  string.strip.gsub(/^#{indentation}/, "")
+end
+
+files = {
+  "Capfile" => unindent(<<-FILE),
+    Dir['../plugins/recipes/*.rb'].each { |plugin| load(plugin) }
+    load '../lib/init.rb'
+  FILE
+}
+
+files.each do |file, content|
+  file = File.join(@task_dir, file)
+  if File.exists?(file)
+    warn "[skip] `#{file}' already exists"
+  elsif File.exists?(file.downcase)
+    warn "[skip] `#{file.downcase}' exists, which could conflict with `#{file}'"
+  elsif !File.exists?(File.dirname(file))
+    warn "[skip] directory `#{File.dirname(file)}' does not exist"
+  else
+    puts "[add] writing `#{file}'"
+    File.open(file, "w") { |f| f.write(content) }
+  end
+end
+
+puts "[done] blanketed!"
