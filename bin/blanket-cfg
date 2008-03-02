@@ -43,7 +43,7 @@ FileUtils.mkdir_p @task_dir
 def write_config_for(sym)
   file = @task_dir + "/#{sym.to_s}.yml"
   atts = Object.const_get(OPTIONS[sym]).default_attributes
-  writer = Writer.new(atts)
+  writer = Blanket::Writer.new(atts)
   puts "Writing #{sym} configuration #{file}"
   writer.write(file)
 end

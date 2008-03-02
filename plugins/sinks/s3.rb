@@ -57,11 +57,11 @@ class S3 < Sink
     open_connection
     s3_bucket = find_bucket(bucket)
     if s3_bucket[backup_file]
-      log("Skipping #{backup_file} as it is already in S3", :info)
-    else
+      log("Removing existing #{backup_file}", :info)
+      S3Object.delete(backup_file.to_s, bucket)
+    end
       log("Uploading #{backup_file} to S3", :info)
       S3Object.store(backup_file.to_s, File.open(backup_file), bucket)
-    end
   end
   
 end
