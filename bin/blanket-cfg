@@ -59,8 +59,7 @@ end
 
 files = {
   "Capfile" => unindent(<<-FILE),
-    Dir['../plugins/recipes/*.rb'].each { |plugin| load(plugin) }
-    load '../lib/init.rb'
+    require 'capistrano/recipes/blanket'
   FILE
 }
 

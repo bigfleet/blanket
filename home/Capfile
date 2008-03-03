@@ -1,2 +1,0 @@
-Dir['../plugins/recipes/*.rb'].each { |plugin| load(plugin) }
-load '../lib/init.rb'

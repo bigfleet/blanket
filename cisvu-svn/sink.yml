@@ -1,5 +1,0 @@
---- 
-access_key_id: your-id
-secret_access_key: your-secret-ket
-bucket: s3-bucket
-sink_type: S3

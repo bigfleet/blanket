@@ -1,5 +1,0 @@
---- 
-sink_type: S3
-access_key_id: key_id
-secret_access_key: key
-bucket: bucket_name
