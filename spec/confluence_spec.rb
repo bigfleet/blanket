@@ -4,7 +4,7 @@ describe "The Confluence source" do
   
   before(:each) do
     @file = File.dirname(__FILE__) + "/fixtures/confluence.yml"
-    @reader = Reader.new(@file)
+    @reader = Blanket::Reader.new(@file)
     @instance = Confluence.new(@reader)
     @date_string = Date.today.strftime("%Y_%m_%d")
   end
@@ -16,15 +16,15 @@ describe "The Confluence source" do
   
   it "should delegate methods to its configuration" do
     @instance.source_type.should == "Confluence"
-    @instance.remote_directory.should == "/path/to/remote/backups"
+    @instance.remote_directory.should == "/path/to/remote/confluence/backups"
   end
   
   it "should assemble the remote backup path properly" do
-    @instance.remote_backup_path.should == "/path/to/remote/backups/daily-backup-#{@date_string}.zip"
+    @instance.remote_backup_path.should == "/path/to/remote/confluence/backups/daily-backup-#{@date_string}.zip"
   end
   
   it "should assemble the local backup path properly" do
-    @instance.local_backup_path.should == "/path/to/local/backups/daily-backup-#{@date_string}.zip"
+    @instance.local_backup_path.should == "/path/to/local/confluence/backups/daily-backup-#{@date_string}.zip"
   end
   
 end

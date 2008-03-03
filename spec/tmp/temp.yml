@@ -1,7 +1,7 @@
 --- 
-user: foo
-directory: /var/confluence/backups
-bucket: com.foobar.confluence
-host: foobar.com
+user: username
+remote_directory: /path/to/remote/confluence/backups
+local_directory: /path/to/local/confluence/backups
 source_type: Confluence
-password: topsecret
+host: yourhost.com
+password: password

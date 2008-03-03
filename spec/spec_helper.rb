@@ -1,2 +1,2 @@
-require File.dirname(__FILE__) + "/../lib/init.rb"
+require File.dirname(__FILE__) + "/../lib/blanket/init.rb"
 gem 'rspec'
