@@ -2,7 +2,7 @@
 require 'optparse'
 require 'fileutils'
 
-load File.dirname(__FILE__) + "/../lib/init.rb"
+require 'blanket/init'
 
 # default options
 OPTIONS = {
