@@ -1,0 +1,7 @@
+--- 
+user: username
+remote_directory: /path/to/remote/directory
+local_directory: /path/to/local/blanket
+host: yourhost.com
+source_type: RemoteDirectory
+password: password

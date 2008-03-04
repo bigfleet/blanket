@@ -1,4 +1,4 @@
-class GenericRemote < Source
+class SingleFile < Source
   
   def initialize(reader)
     @reader = reader
