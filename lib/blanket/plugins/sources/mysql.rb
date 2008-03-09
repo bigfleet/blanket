@@ -6,7 +6,7 @@ class Mysql < Source
   end
   
   def self.attribute_symbols
-    [:source_type, :host, :username, :db_user, :password, 
+    [:source_type, :host, :user, :db_user, :password, 
       :db_password, :database, :dump_options, :remote_path, :local_path ]
   end
   
@@ -18,7 +18,7 @@ class Mysql < Source
     "yourhost.com"
   end
   
-  def self.default_username
+  def self.default_user
     "username"
   end
   
