@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
              "lib/blanket/plugins/sources/remote_directory.rb",
              "lib/blanket/plugins/sources/postgresql.rb",
              "lib/blanket/plugins/sinks/s3.rb", 
+             "lib/blanket/plugins/sinks/scp.rb",              
              "spec/fixtures", 
              "spec/confluence_spec.rb", 
              "spec/dependency_spec.rb", 
