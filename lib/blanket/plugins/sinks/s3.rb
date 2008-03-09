@@ -9,6 +9,10 @@ class S3 < Sink
     @reader = reader
   end
   
+  def self.additional_requirements
+    "'capistrano/recipes/s3'"
+  end
+  
   def self.attribute_symbols
     [:access_key_id, :secret_access_key, :sink_type, :bucket]
   end

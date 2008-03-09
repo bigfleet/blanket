@@ -36,6 +36,7 @@ $stderr <<  BAD_ARGS unless OPTIONS[:task] && OPTIONS[:source] && OPTIONS[:sink]
 
 task = OPTIONS[:task]
 source_class = OPTIONS[:source]
+sink_class = OPTIONS[:sink]
 @task_dir = FileUtils.pwd + "/" +task
 puts "Creating #{@task_dir}"
 FileUtils.mkdir_p @task_dir
@@ -51,6 +52,14 @@ end
 write_config_for(:source)
 write_config_for(:sink)
 
+requirements = ["'capistrano/recipes/blanket'"]
+[:source, :sink].each do |phase|
+  phase_class = Object.const_get(OPTIONS[phase])
+  (requirements << phase_class.additional_requirements) if phase_class.respond_to? :additional_requirements
+end
+
+capfile_requires = requirements.inject("") {|statement, r| statement += "require #{r}\r\n" }
+
 
 def unindent(string)
   indentation = string[/\A\s*/]
@@ -58,9 +67,7 @@ def unindent(string)
 end
 
 files = {
-  "Capfile" => unindent(<<-FILE),
-    require 'capistrano/recipes/blanket'
-  FILE
+  "Capfile" => unindent(capfile_requires)
 }
 
 files.each do |file, content|
