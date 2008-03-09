@@ -42,21 +42,14 @@ Capistrano::Configuration.instance(:must_exist).load do
       end
       set :sink, Object.const_get(sink_type).new(reader)
     end
-  
-    desc "Send file to sink"
-    task :export do
-      upload_filename = Pathname.new(variables[:source].local_backup_path).basename.to_s
-      variables[:sink].drain(bucket, upload_filename)
-    end
     
-    desc "SCP file out"
-    task :scp, :hosts => lambda{ host } do
+    desc "Export file using put"
+    task :export, :hosts => lambda{ host } do
       put variables[:source].remote_backup_path, variables[:sink].remote_path
     end
   
   end
   before "sink:export", "source:download"
   before "sink:export", "sink:load_config"
-  before "sink:scp", "source:download"
-  before "sink:scp", "sink:load_config"
+
 end

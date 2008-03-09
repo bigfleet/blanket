@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
              "lib/blanket/utils.rb", 
              "lib/capistrano/recipes", 
              "lib/capistrano/recipes/blanket.rb",  
+             "lib/capistrano/recipes/s3.rb",
              "lib/blanket/plugins/sources", 
              "lib/blanket/plugins/sources/confluence.rb", 
              "lib/blanket/plugins/sources/mysql.rb", 
