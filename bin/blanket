@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'capistrano/cli'
+require 'fileutils'
 dir = ARGV.shift
 ARGV << "sink:export"
 FileUtils.cd(dir)
