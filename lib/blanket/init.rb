@@ -8,19 +8,21 @@ require 'capistrano'
 require 'aws/s3'
 require 'pathname'
 
-# God, this is laborious.  I need to know how to do this better.
+root = File.dirname(__FILE__)
 
-require File.dirname(__FILE__) + "/utils.rb"
-require File.dirname(__FILE__) + "/config/reader.rb"
-require File.dirname(__FILE__) + "/config/writer.rb"
-require File.dirname(__FILE__) + "/sink.rb"
-require File.dirname(__FILE__) + "/source.rb"
-require File.dirname(__FILE__) + "/plugins/sources/confluence.rb"
-require File.dirname(__FILE__) + "/plugins/sources/mysql.rb"
-require File.dirname(__FILE__) + "/plugins/sources/subversion.rb"
-require File.dirname(__FILE__) + "/plugins/sources/single_file.rb"
-require File.dirname(__FILE__) + "/plugins/sources/remote_directory.rb"
-require File.dirname(__FILE__) + "/plugins/sources/postgresql.rb"
-require File.dirname(__FILE__) + "/plugins/sinks/s3.rb"
-require File.dirname(__FILE__) + "/plugins/sinks/scp.rb"
-require File.dirname(__FILE__) + "/plugins/sinks/sftp.rb"
+require File.join(root, "utils.rb")
+require File.join(root, "config", "reader.rb")
+require File.join(root, "config", "writer.rb")
+require File.join(root, "sink.rb")
+require File.join(root, "source.rb")
+
+# Require all sources and sinks
+sources_directory = File.join(root, 'plugins', 'sources')
+sink_directory    = File.join(root, 'plugins', 'sinks')
+
+[sources_directory, sink_directory].each do |directory|
+  # select only files ending in .rb
+  Dir.new(directory).select{|file| file =~ /\.rb/}.each do |source|
+    require File.join(directory, source)
+  end
+end
