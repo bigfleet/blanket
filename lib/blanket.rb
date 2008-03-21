@@ -8,14 +8,13 @@ require 'capistrano'
 require 'aws/s3'
 require 'pathname'
 
-root = File.dirname(__FILE__)
+require "blanket/utils"
+require "blanket/config/reader"
+require "blanket/config/writer"
+require 'blanket/sink'
+require 'blanket/source'
 
-require File.join(root, "utils.rb")
-require File.join(root, "config", "reader.rb")
-require File.join(root, "config", "writer.rb")
-require File.join(root, "sink.rb")
-require File.join(root, "source.rb")
-
+root = File.join(File.dirname(__FILE__), "blanket")
 # Require all sources and sinks
 sources_directory = File.join(root, 'plugins', 'sources')
 sink_directory    = File.join(root, 'plugins', 'sinks')

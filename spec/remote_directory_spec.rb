@@ -9,7 +9,8 @@ describe "The remote directory source" do
   end
   
   it "should decompose a directory into appropriate components" do
-    @instance.prep_command.should == "tar cvf /path/to/remote/directory.tar /path/to/remote/directory; gzip /path/to/remote/directory.tar"
+    @instance.prep_command.should == 
+      "tar cvf /path/to/remote/directory.tar /path/to/remote/directory; gzip -f /path/to/remote/directory.tar"
   end
   
 end
