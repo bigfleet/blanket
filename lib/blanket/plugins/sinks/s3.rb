@@ -2,7 +2,7 @@ gem 'aws-s3'
 
 # Sink for uploading backup material to Amazon's S3 Service
 #
-# When using <code>blanket-cfg</code> with the <code>-o S3</code> argument,
+# When using <code>blanket-cfg</code> with the <code>-i S3</code> argument,
 # you'll need to supply the correct details for the following attributes
 # in the sink.yml file.
 #
