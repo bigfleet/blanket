@@ -1,19 +1,35 @@
 gem 'aws-s3'
+
+# Sink for uploading backup material to Amazon's S3 Service
+#
+# When using <code>blanket-cfg</code> with the <code>-o S3</code> argument,
+# you'll need to supply the correct details for the following attributes
+# in the sink.yml file.
+#
+# 
+# [access_key_id] Your ID from your Amazon Web Services Account</dd>
+# [secret_access_key] The "password" equivalent, you have to click on an on-screen control to access this
+# [bucket] The name of the bucket to which you will upload the backup.  The default is "s3-bucket". You don't have to supply this value, but you probably should
+#
+# After supplying this data and configuring your Sink, you should be able to
+# use the <code>blanket</code> command to test your configuration.
 class S3 < Sink
   
   include AWS::S3
   
   attr_accessor :reader
   
-  def initialize(reader)
+  def initialize(reader) #:nodoc:
     @reader = reader
   end
   
+  # additional requirements needed for the Capfile in order to use
+  # the correct recipes.
   def self.additional_requirements
     "'capistrano/recipes/s3'"
   end
   
-  def self.attribute_symbols
+  def self.attribute_symbols #:nodoc:
     [:access_key_id, :secret_access_key, :sink_type, :bucket]
   end
   
@@ -33,6 +49,8 @@ class S3 < Sink
     "s3-bucket"
   end
   
+  # finds the bucket to use on the S3 side.  If the bucket is
+  # not found, it will be created.
   def find_bucket(bucket)
     begin
       Bucket.find(bucket) 
@@ -42,10 +60,12 @@ class S3 < Sink
     end
   end
   
+  # creates an S3 bucket of a specified name
   def self.create_bucket(name)
     Bucket.create(name)
   end
   
+  # opens the connection to the S3 service
   def open_connection
     AWS::S3::Base.establish_connection!(
         :access_key_id     => @reader.access_key_id,
@@ -53,10 +73,13 @@ class S3 < Sink
     )
   end
   
-  def log(msg, lvl)
+  def log(msg, lvl) #:nodoc:
     puts msg
   end
   
+  # performs the act of uploading the backup file to S3.  If a
+  # file of the same name exists on the remote system, it will
+  # be overwritten with the new file you supply.
   def drain(bucket, backup_file)
     open_connection
     s3_bucket = find_bucket(bucket)

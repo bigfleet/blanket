@@ -25,3 +25,7 @@ sink_directory    = File.join(root, 'plugins', 'sinks')
     require File.join(directory, source)
   end
 end
+
+# This is RDoc for Blanket
+module Blanket
+end
