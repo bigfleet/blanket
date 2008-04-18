@@ -25,8 +25,9 @@ class Sftp < Sink
   end
   
   # additional requirements for the Capfile to include in order to use
-  # the appropriate Capistrano recipes.
-  def self.additional_requirements
+  # the appropriate Capistrano recipes.  You probably won't need to
+  # change this.
+  def self.additional_requirements #:nodoc:
     "'capistrano/recipes/sftp'"
   end
   
