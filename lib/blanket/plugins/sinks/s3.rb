@@ -7,9 +7,9 @@ gem 'aws-s3'
 # in the sink.yml file.
 #
 # 
-# [access_key_id] Your ID from your Amazon Web Services Account</dd>
+# [access_key_id] Your ID from your Amazon Web Services Account
 # [secret_access_key] The "password" equivalent, you have to click on an on-screen control to access this
-# [bucket] The name of the bucket to which you will upload the backup.  The default is "s3-bucket". You don't have to supply this value, but you probably should
+# [bucket] The name of the bucket to which you will upload the backup.  The default is "s3-bucket".  You don't have to supply this value, but you probably should
 #
 # After supplying this data and configuring your Sink, you should be able to
 # use the <code>blanket</code> command to test your configuration.
@@ -24,8 +24,8 @@ class S3 < Sink
   end
   
   # additional requirements needed for the Capfile in order to use
-  # the correct recipes.
-  def self.additional_requirements
+  # the correct recipes.  You probably won't need to change this.
+  def self.additional_requirements #:nodoc:
     "'capistrano/recipes/s3'"
   end
   
@@ -33,19 +33,19 @@ class S3 < Sink
     [:access_key_id, :secret_access_key, :sink_type, :bucket]
   end
   
-  def self.default_sink_type
+  def self.default_sink_type #:nodoc:
     "S3"
   end
     
-  def self.default_access_key_id
+  def self.default_access_key_id #:nodoc:
     "your-id"
   end
   
-  def self.default_secret_access_key
+  def self.default_secret_access_key #:nodoc:
     "your-secret-ket"
   end
   
-  def self.default_bucket
+  def self.default_bucket #:nodoc:
     "s3-bucket"
   end
   

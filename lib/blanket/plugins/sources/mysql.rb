@@ -1,7 +1,22 @@
 require 'date'
 
-# Source for backing up MySQL databases.  Uses the mysqldump command on the
-# remote system.
+# Source for backing up a MySQL database.
+#
+# Create a MySQL source by running <code>blanket-cfg</code> with the
+# <code>-o Mysql</code> option. Databases are backed up using 
+# <code>mysqldump</code> In the source.yml file, set the following options:
+#
+# [user] Username on the remote system.
+# [password] Password on the remote system.
+# [host] Domain name of the remote system.
+# [db_user] Database username
+# [db_password] Database password
+# [db_host] Host name on the remote system that <code>mysqldump</code> should connect to. Usually <code>localhost</code> or <code>127.0.0.1</code>.
+# [database] Name of the database to backup.
+# [dump_options] Optional arguments to <code>mysqldump</code>. See the manual entry on mysqldump[http://dev.mysql.com/doc/refman/5.0/en/mysqldump.html] for more options.
+# [remote_path] The location on the remote server where the database backup file is stored temporarily. 
+# [local_path] The location on client running the blanket where the database backup is stored before being sent to a sink.
+
 class Mysql < Source
   
   def initialize(reader) #:nodoc:
@@ -17,69 +32,58 @@ class Mysql < Source
     "Mysql"
   end
   
-  def self.default_host
+  def self.default_host #:nodoc:
     "yourhost.com"
   end
   
-  # Your username on the remote system.
-  def self.default_user
+  def self.default_user #:nodoc:
     "username"
   end
   
-  # The username you use for MySQL access.
-  def self.default_db_user
+  def self.default_db_user #:nodoc:
     "username"
   end
 
-  # Your password for the remote system.  May not be needed if you have
-  # set up SSH keys.  
-  def self.default_password
+  def self.default_password #:nodoc:
     "password"
   end
   
-  # The password that you use for MySQL access.
-  def self.default_db_password
+  def self.default_db_password #:nodoc:
     "password"
   end
   
-  # The password that you use for MySQL access.  
-  def self.default_database
+  def self.default_database #:nodoc:
     "test"
   end
   
-  # The full remote path where you would like the MySQL file dumped.
-  def self.default_remote_path
+  def self.default_remote_path #:nodoc:
     "/path/to/remote/sql-file"
   end
   
-  # The path on the client filesystem where the SQL file resides after
-  # downloading from the source.  Right now, there is only good support
-  # for having this path within your blanket task directory itself.
-  # See http://bigfleet.lighthouseapp.com/projects/8764/tickets/4-remove-task-directory-dependence-for-storing-backup-file-on-client  
-  def self.default_local_path
+  def self.default_local_path #:nodoc:
     "/path/to/local/sql-file"
   end
   
-  # Any options that you'd like to pass to the mysqldump command
-  # (other than those required elsewhere) should be here.
-  def self.default_dump_options
+  def self.default_dump_options #:nodoc:
     ""
   end
   
+  # the path to be fetched by the blanket client.  Delegates to the configuration by default.
   def remote_backup_path
     remote_path
   end
-  
+
+  # the path to be copied from to complete the blanket backup.  Delegates to the configuration by default.  
   def local_backup_path
     local_path
   end
   
-  # Command to prepare MySQL download
+  # Command to prepare MySQL download on the remote system.
   def prep_command
     "mysqldump #{dump_options} -u #{db_user} --password=#{db_password} #{database} > #{remote_backup_path}"
   end
   
-  # Not implemented yet.
+  # Not implemented yet.[http://bigfleet.lighthouseapp.com/projects/8764-blanket/tickets/9-mysql-cleanup-command]
   def cleanup_command
     noop
   end
