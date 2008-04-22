@@ -3,6 +3,13 @@ require 'date'
 # A Source that's aware of the Confluence wiki's particular strategy towards
 # backups.  Confluence makes its own when you ask it to, so this takes care
 # of uploading them to an off-site location.
+#
+# [user] Username on the remote system.
+# [password] Password on the remote system.
+# [host] Domain name of the remote system.
+# [remote_directory] The backup directory for Confluence on the remote server.
+# [local_directory] The location on client running the blanket where the database backup is stored before being sent to a sink.
+
 class Confluence < Source
   
   def initialize(reader) #:nodoc:

@@ -26,6 +26,10 @@ sink_directory    = File.join(root, 'plugins', 'sinks')
   end
 end
 
-# This is RDoc for Blanket
+# Blanket: For making backup easier
+#
+# See a Blanket introduction[http://github.com/bigfleet/blanket/wikis] or
+# a walkthrough[http://github.com/bigfleet/blanket/wikis/quickstart] of 
+# setting up your first blanket.
 module Blanket
 end

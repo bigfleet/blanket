@@ -10,10 +10,12 @@
 # [host] Domain name of the remote system.
 # [remote_path] The location on the remote server you'd like to blanket.
 # [local_path] The location on client running the blanket where the database backup is stored before being sent to a sink.
-#
-# http://bigfleet.lighthouseapp.com/projects/8764-blanket/tickets/13-document-overwriting-single-file
 
 class SingleFile < Source
+
+  # One additional TODO
+  # http://bigfleet.lighthouseapp.com/projects/8764-blanket/tickets/13-document-overwriting-single-file
+
   
   def initialize(reader) #:nodoc:
     @reader = reader
