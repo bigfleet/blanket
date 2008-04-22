@@ -1,3 +1,15 @@
 Welcome to Blanket!
 
 https://github.com/bigfleet/blanket/wikis is the canonical online source for info on Blanket.
+
+h2. Version History
+
+h3. Current: 0.1.1
+
+Major element in this release is new RDoc
+
+h3. Previous
+
+* 0.1.0
+
+Added new sources and sinks.
